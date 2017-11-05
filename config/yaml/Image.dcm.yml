@@ -1,0 +1,23 @@
+Image:
+  type: entity
+  table: images
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+
+  manyToMany:
+    groups:
+      targetEntity: Category
+      joinTable:
+        name: categories_images
+        joinColumns:
+          images_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          categories_id:
+            referencedColumnName: id
