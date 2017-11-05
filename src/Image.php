@@ -14,11 +14,16 @@ class Image
      *      inverseJoinColumns={@JoinColumn(name="categories_id", referencedColumnName="id")}
      *      )
      */
-    private $categories;
+    protected  $categories = null;
 
     public  function getCategories(){
 
         return $this->categories;
+    }
+
+    public function setCategories($category){
+
+        $this->categories[] = $category;
     }
 
     public function __construct() {

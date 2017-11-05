@@ -5,16 +5,29 @@
 // create_product.php <name>
 require_once "bootstrap.php";
 
+
 $Image = new Image();
-$Image->setName('test');
+$Image->setName('test Today with categories');
+
+$cats = array(1, 2, 9);
+
+foreach ($cats as $cat){
+
+    $cat_object = $entityManager->find('Category', $cat);
+    if($cat_object != NUll){
+        $Image->setCategories($cat_object);
+    }else{
+        echo 'null';
+    }
+}
 
 
-//$entityManager->persist($Image);
-//$entityManager->flush();
+$entityManager->persist($Image);
+$entityManager->flush();
 
+echo "Created Product with ID " . $Image->getId() . "\n ";
 
-
-//echo "Created Product with ID " . $Image->getId() . "\n ";
+echo '<br><br>';
 
 
 //print_r($Image);
@@ -26,6 +39,8 @@ $images = $productRepository->findAll();
 //var_dump($products);
 //echo '</pre>';
 //die;
+
+
 foreach ($images as $i) {
     echo $i->getId(), ' ----> ', $i->getName();
     echo '<br/>';
